@@ -11,6 +11,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  created() {
+    // fetch transactions of plan
   }
 }
 </script>
