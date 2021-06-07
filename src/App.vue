@@ -1,37 +1,15 @@
 <template>
-  <!-- <div id="nav">
+  <div id="nav">
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link :to="{ name: 'Plans'}">Budget Plans</router-link>
   </div>
-  <router-view/> -->
-  <plans-list :plans="plans"></plans-list>
+  <router-view/>
 </template>
 
 <script>
-import PlansList from "@/components/plans/PlansList.vue";
 
 export default {
-  components: {
-    PlansList
-  },
-  data() {
-    return {
-      plans: [
-        {
-          id: 1,
-          title: 'plan 1',
-        },
-        {
-          id: 2,
-          title: 'plan 2',
-        },
-        {
-          id: 3,
-          title: 'plan 3',
-        },
-      ],
-    }
-  }
+ 
 }
 </script>
 
