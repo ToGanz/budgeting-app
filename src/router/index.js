@@ -4,6 +4,7 @@ import Plans from '../views/Plans.vue'
 import Plan from '../views/Plan.vue'
 import Categories from '../views/Categories.vue'
 import NotFound from '@/views/NotFound.vue'
+import NetworkError from '@/views/NetworkError.vue'
 
 
 const routes = [
@@ -27,6 +28,11 @@ const routes = [
     path: '/categories',
     name: 'Categories',
     component: Categories
+  },
+  {
+    path: '/network-error',
+    name: 'NetworkError',
+    component: NetworkError
   },
   {
     path: '/404/:resource',
