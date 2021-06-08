@@ -1,13 +1,17 @@
 <template>
-  <ul v-for="transaction in transactions" :key="transaction.id" id="transactions-list">
-    <router-link :to="{ name: 'Transaction', params: { id: transaction.id } }">
+  <div id="transactions-list">
+    <ul
+      v-for="transaction in transactions"
+      :key="transaction.id"
+      class="transaction-list"
+    >
       <li>{{ transaction.description }}</li>
       <li>{{ transaction.category }}</li>
       <li>{{ transaction.spending }}</li>
       <li>{{ transaction.amount }}</li>
       <li>{{ transaction.date }}</li>
-    </router-link>
-  </ul>
+    </ul>
+  </div>
 </template>
 
 <script>

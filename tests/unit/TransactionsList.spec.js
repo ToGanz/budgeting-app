@@ -15,15 +15,15 @@ describe('TransactionsList', () => {
         description: 'transaction 2',
         category: 'neccessities',
         spending: true,
-        amount: 12.0,
-        date: '12.06.2021'
+        amount: 11.0,
+        date: '11.06.2021'
       },
       {
         description: 'transaction 3',
         category: 'neccessities',
         spending: true,
-        amount: 12.0,
-        date: '12.06.2021'
+        amount: 10.0,
+        date: '10.06.2021'
       }
     ]
 
