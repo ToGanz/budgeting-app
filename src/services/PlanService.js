@@ -15,5 +15,18 @@ const apiClient = axios.create({
 export default {
   getPlans() {
     return apiClient.get('/plans')
-  }
+  },
+  getPlan(id) {
+    return apiClient.get('/plans/' + id)
+  },
+  createPlan(plan) {
+    return apiClient.post('/plans', plan)
+  },
+  editPlan(id, plan) {
+    return apiClient.put('/plans' + id, plan)
+  },
+  deletePlan(id) {
+    return apiClient.delete('/plans/' + id)
+  },
+
 }
