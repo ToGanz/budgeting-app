@@ -11,21 +11,11 @@ export default {
   },
   data() {
     return {
-      plans: [
-        {
-          id: 1,
-          title: 'plan 1'
-        },
-        {
-          id: 2,
-          title: 'plan 2'
-        },
-        {
-          id: 3,
-          title: 'plan 3'
-        }
-      ]
+      plans: null
     }
+  },
+  created() {
+    // get plans form db 
   }
 }
 </script>
