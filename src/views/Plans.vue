@@ -4,6 +4,7 @@
 
 <script>
 import PlansList from '@/components/plans/PlansList.vue'
+import PlanService from '@/services/PlanService.js'
 
 export default {
   components: {
@@ -11,11 +12,23 @@ export default {
   },
   data() {
     return {
-      plans: null
+      plans: []
     }
   },
   created() {
-    // get plans form db 
+    PlanService.getPlans()
+      .then((response) => {
+        const responseData = response.data.data
+        responseData.forEach((plan) => {
+          this.plans.push({
+            id: plan.id,
+            ...plan.attributes
+          })
+        })
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   }
 }
 </script>
