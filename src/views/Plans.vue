@@ -26,6 +26,7 @@ export default {
         await this.$store.dispatch('plans/getPlans')
       } catch (error) {
         this.error = error.message || 'Something went wrong!'
+        console.log(this.error)
       }
     }
   },
