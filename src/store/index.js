@@ -1,12 +1,10 @@
 import { createStore } from 'vuex'
+import plansModule from './modules/Plans/index.js'
 
-export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+const store = createStore({
   modules: {
+    plans: plansModule
   }
 })
+
+export default store;

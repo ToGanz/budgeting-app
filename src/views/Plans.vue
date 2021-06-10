@@ -4,7 +4,6 @@
 
 <script>
 import PlansList from '@/components/plans/PlansList.vue'
-import PlanService from '@/services/PlanService.js'
 
 export default {
   components: {
@@ -12,23 +11,26 @@ export default {
   },
   data() {
     return {
-      plans: []
+      error: null
+    }
+  },
+  computed: {
+    plans() {
+      const plans = this.$store.getters['plans/plans']
+      return plans
+    }
+  },
+  methods: {
+    async getPlans() {
+      try {
+        await this.$store.dispatch('plans/getPlans')
+      } catch (error) {
+        this.error = error.message || 'Something went wrong!'
+      }
     }
   },
   created() {
-    PlanService.getPlans()
-      .then((response) => {
-        const responseData = response.data.data
-        responseData.forEach((plan) => {
-          this.plans.push({
-            id: plan.id,
-            ...plan.attributes
-          })
-        })
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+    this.getPlans();
   }
 }
 </script>
