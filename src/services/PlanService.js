@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import store from '../store/index'
 console.log(store)
-const token = 'aeyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MjMzODIxMjN9.lllFDthXNl9aYxpGj0rA8AVwepQE5HI5Vwg74PLkKtw'
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MjMzODIxMjN9.lllFDthXNl9aYxpGj0rA8AVwepQE5HI5Vwg74PLkKtw'
 
 const apiClient = axios.create({
   baseURL: 'https://tg-budgeting-app-backend.herokuapp.com/api/v1',
