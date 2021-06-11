@@ -1,7 +1,5 @@
 import axios from 'axios'
 
-import store from '../store/index'
-console.log(store)
 const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2MjM0NjY3MDF9.pjTCJKtC38sxeSlLbEWYFaYR8KG7FLrFqZAZQN7W7w8'
 
 const apiClient = axios.create({
