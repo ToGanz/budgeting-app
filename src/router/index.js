@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import NProgress from 'nprogress'
+
 import Home from '../views/Home.vue'
 import Plans from '../views/Plans.vue'
 import Plan from '../views/Plan.vue'
 import Categories from '../views/Categories.vue'
 import NotFound from '@/views/NotFound.vue'
 import NetworkError from '@/views/NetworkError.vue'
-
 
 const routes = [
   {
@@ -50,6 +51,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+router.beforeEach(() => {
+  NProgress.start()
+})
+
+router.afterEach(() => {
+  NProgress.stop()
 })
 
 export default router
