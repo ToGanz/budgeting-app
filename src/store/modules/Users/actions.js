@@ -1,7 +1,7 @@
 import UserService from '@/services/UserService.js'
 
 export default {
-  async getPlans(context, data) {
+  async registerUser(context, data) {
     const response = await UserService.createUser(data)
 
     const responseData = response.data
