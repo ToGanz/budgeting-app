@@ -7,12 +7,18 @@ import Plan from '../views/Plan.vue'
 import Categories from '../views/Categories.vue'
 import NotFound from '@/views/NotFound.vue'
 import NetworkError from '@/views/NetworkError.vue'
+import RegisterUser from '../views/RegisterUser.vue'
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: RegisterUser
   },
   {
     path: '/plans',

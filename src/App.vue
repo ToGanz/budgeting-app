@@ -3,6 +3,7 @@
     <router-link to="/">Home</router-link> |
     <router-link :to="{ name: 'Plans'}">Budget Plans</router-link> | 
     <router-link :to="{ name: 'Categories'}">Categories</router-link>
+    <router-link :to="{ name: 'Register'}">Register</router-link>
   </div>
   <router-view/>
 </template>
