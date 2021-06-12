@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const apiClient = axios.create({
-  baseURL: 'https://tg-budgeting-app-backend.herokuapp.com/api/v1/',
+  baseURL: 'https://tg-budgeting-app-backend.herokuapp.com/api/v1',
   withCredentials: false,
   headers: {
     Accept: 'application/json',

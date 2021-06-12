@@ -40,7 +40,7 @@ export default {
         password: this.password
       }
 
-      this.$store.dispatch('registerUser', {
+      this.$store.dispatch('users/registerUser', {
         user
       })
     }
