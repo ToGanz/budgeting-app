@@ -27,7 +27,16 @@ export default {
     }
   },
   methods: {
-    
+    login() {
+      const user = {
+        email: this.email,
+        password: this.password
+      }
+
+      this.$store.dispatch('users/login', user).then(() => {
+        this.$router.push({ name: 'Plans' })
+      })
+    }
   }
 }
 </script>
