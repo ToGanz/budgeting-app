@@ -1,5 +1,5 @@
 export default {
-  setPlans(state, payload) {
+  SET_PLANS(state, payload) {
     state.plans = payload
   }
 }

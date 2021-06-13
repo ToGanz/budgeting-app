@@ -1,5 +1,5 @@
 export default {
-  setUser(state, payload) {
+  SET_USER(state, payload) {
     state.name = payload.name
     state.email = payload.email
   }

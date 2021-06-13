@@ -7,7 +7,7 @@ export default {
 
     const responseData = response.data
 
-    context.commit('setUser', {
+    context.commit('SET_USER', {
       name: responseData.data.attributes.name,
       email: responseData.data.attributes.email
     })

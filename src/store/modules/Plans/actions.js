@@ -15,6 +15,6 @@ export default {
       })
     })
 
-    context.commit('setPlans', plans)
+    context.commit('SET_PLANS', plans)
   }
 }
