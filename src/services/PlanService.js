@@ -15,7 +15,8 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use((config) => {
   // We are importing store before it is populated.
   // We intercept the request and use the current token
-  config.headers = {'Authorization': store.getters['token']};
+  config.headers = { 'Authorization': store.getters['users/token'] };
+  return config;
  });
 
 export default {
