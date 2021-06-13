@@ -7,7 +7,8 @@ const usersModule = {
   state() {
     return {
       name: null,
-      email: null
+      email: null,
+      token: null
     };
   },
   getters,

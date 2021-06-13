@@ -2,19 +2,23 @@ import UserService from '@/services/UserService.js'
 
 export default {
   async registerUser(context, data) {
-    const user = {
-      name: data.name,
-      email: data.email,
-      password: data.password
-    }
-    
-    const response = await UserService.createUser(user)
+    const createResponse = await UserService.createUser(
+      data.name,
+      data.email,
+      data.password
+    )
+    const createResponseData = createResponse.data
 
-    const responseData = response.data
+    const loginResponse = await UserService.login(
+      createResponseData.data.attributes.email,
+      data.password
+    )
+    const loginResponseData = loginResponse.data
 
     context.commit('SET_USER', {
-      name: responseData.data.attributes.name,
-      email: responseData.data.attributes.email
+      name: createResponseData.data.attributes.name,
+      email: createResponseData.data.attributes.email,
+      token: loginResponseData.auth_token
     })
   }
 }
