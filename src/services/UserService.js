@@ -18,7 +18,6 @@ export default {
         password
       }
     }
-
     return apiClient.post('/users', user)
   },
   login(email, password) {
@@ -28,7 +27,6 @@ export default {
         password
       }
     }
-
     return apiClient.post('/auth/login', user)
   }
 }
