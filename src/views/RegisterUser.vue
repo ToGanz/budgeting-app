@@ -40,7 +40,9 @@ export default {
         password: this.password
       }
 
-      this.$store.dispatch('users/registerUser', user)
+      this.$store.dispatch('users/registerUser', user).then(() => {
+        this.$router.push({ name: 'Plans' })
+      })
     }
   }
 }
