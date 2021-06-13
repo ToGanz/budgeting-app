@@ -4,15 +4,18 @@
     <router-link :to="{ name: 'Plans'}">Budget Plans</router-link> | 
     <router-link :to="{ name: 'Categories'}">Categories</router-link> | 
     <router-link :to="{ name: 'Register'}">Register</router-link> | 
-    <router-link :to="{ name: 'Login'}">Login</router-link>
+    <router-link v-if="!loggedIn" :to="{ name: 'Login'}">Login</router-link>
   </div>
   <router-view/>
 </template>
 
 <script>
+import { authComputed } from './store/helpers.js'
 
 export default {
- 
+  computed:{
+    loggedIn: authComputed['users/loggedIn']
+  }
 }
 </script>
 
