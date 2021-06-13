@@ -8,6 +8,8 @@ import Categories from '../views/Categories.vue'
 import NotFound from '@/views/NotFound.vue'
 import NetworkError from '@/views/NetworkError.vue'
 import RegisterUser from '../views/RegisterUser.vue'
+import LoginUser from '../views/LoginUser.vue'
+
 
 const routes = [
   {
@@ -19,6 +21,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: RegisterUser
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: LoginUser
   },
   {
     path: '/plans',
