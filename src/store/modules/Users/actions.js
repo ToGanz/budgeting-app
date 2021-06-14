@@ -33,5 +33,8 @@ export default {
       email: responseData.email,
       token: responseData.auth_token
     })
+  },
+  logout(context) {
+    context.commit('CLEAR_USER')
   }
 }
