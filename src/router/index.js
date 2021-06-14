@@ -10,7 +10,6 @@ import NetworkError from '@/views/NetworkError.vue'
 import RegisterUser from '../views/RegisterUser.vue'
 import LoginUser from '../views/LoginUser.vue'
 
-
 const routes = [
   {
     path: '/',
@@ -30,18 +29,21 @@ const routes = [
   {
     path: '/plans',
     name: 'Plans',
-    component: Plans
+    component: Plans,
+    meta: { requiresAuth: true }
   },
   {
     path: '/plans/:id',
     name: 'Plan',
     props: true,
-    component: Plan
+    component: Plan,
+    meta: { requiresAuth: true }
   },
   {
     path: '/categories',
     name: 'Categories',
-    component: Categories
+    component: Categories,
+    meta: { requiresAuth: true }
   },
   {
     path: '/network-error',
@@ -66,8 +68,16 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach(() => {
+router.beforeEach((to, from, next) => {
   NProgress.start()
+
+  const loggedIn = localStorage.getItem('user')
+
+  if (to.matched.some((record) => record.meta.requiresAuth) && !loggedIn) {
+    next('/')
+  } else {
+    next()
+  }
 })
 
 router.afterEach(() => {
