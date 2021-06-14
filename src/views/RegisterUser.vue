@@ -19,7 +19,14 @@
       <button type="submit" name="button">
         Register
       </button>
-      <router-link :to="{ name: 'Login'}">
+
+      <ul>
+        <li v-for="(error, index) in errors" :key="index">
+          {{ error }}
+        </li>
+      </ul>
+
+      <router-link :to="{ name: 'Login' }">
         Already have an account? Login.
       </router-link>
     </form>
@@ -32,10 +39,26 @@ export default {
     return {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      errors: null
     }
   },
   methods: {
+    beautifyErrors(errors) {
+      const errorList = []
+      for (let error in errors) {
+        if (error !== 'password_digest') {
+          let errorSentence =
+            error[0].toUpperCase() +
+            error.slice(1) +
+            ' ' +
+            errors[error][0]
+
+          errorList.push(errorSentence)
+        }
+      }
+      return errorList
+    },
     register() {
       const user = {
         name: this.name,
@@ -43,9 +66,14 @@ export default {
         password: this.password
       }
 
-      this.$store.dispatch('users/registerUser', user).then(() => {
-        this.$router.push({ name: 'Plans' })
-      })
+      this.$store
+        .dispatch('users/registerUser', user)
+        .then(() => {
+          this.$router.push({ name: 'Plans' })
+        })
+        .catch((err) => {
+          this.errors = this.beautifyErrors(err.response.data.errors)
+        })
     }
   }
 }
