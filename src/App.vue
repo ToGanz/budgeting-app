@@ -12,7 +12,7 @@
       <router-link :to="{ name: 'Categories' }">Categories</router-link>
       |
       <router-link :to="{ name: 'Register' }">Register</router-link>
-
+      |
       <button type="button" class="logoutButton" @click="logout">
         Logout
       </button>
