@@ -24,6 +24,7 @@
 
 <script>
 import { authComputed } from './store/helpers.js'
+import axios from 'axios'
 
 export default {
   computed: {
@@ -40,6 +41,15 @@ export default {
       const userData = JSON.parse(userString)
       this.$store.commit('users/SET_USER', userData)
     }
+    axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response.status === 401) {
+          this.$store.dispatch('logout')
+        }
+        return Promise.reject(error)
+      }
+    )
   }
 }
 </script>
