@@ -1,19 +1,25 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link :to="{ name: 'Plans'}">Budget Plans</router-link> | 
-    <router-link :to="{ name: 'Categories'}">Categories</router-link> | 
-    <router-link :to="{ name: 'Register'}">Register</router-link> | 
-    <router-link v-if="!loggedIn" :to="{ name: 'Login'}">Login</router-link>
+    <router-link to="/">Home</router-link>
+    |
+    <router-link :to="{ name: 'Plans' }">Budget Plans</router-link>
+    |
+    <router-link :to="{ name: 'Categories' }">Categories</router-link>
+    |
+    <router-link :to="{ name: 'Register' }">Register</router-link>
+    |
+    <router-link v-if="!loggedIn" :to="{ name: 'Login' }">
+      Login
+    </router-link>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
 <script>
 import { authComputed } from './store/helpers.js'
 
 export default {
-  computed:{
+  computed: {
     loggedIn: authComputed['users/loggedIn']
   }
 }
