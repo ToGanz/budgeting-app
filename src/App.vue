@@ -13,7 +13,7 @@
       |
       <router-link :to="{ name: 'Categories' }">Categories</router-link>
       |
-      
+
       <button type="button" class="logoutButton" @click="logout">
         Logout
       </button>
@@ -32,6 +32,13 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('users/logout')
+    }
+  },
+  created() {
+    const userString = localStorage.getItem('user')
+    if (userString) {
+      const userData = JSON.parse(userString)
+      this.$store.commit('users/SET_USER', userData)
     }
   }
 }
