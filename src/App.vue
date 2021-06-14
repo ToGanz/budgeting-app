@@ -2,13 +2,14 @@
   <div id="nav">
     <router-link to="/">Home</router-link>
     |
+    <span v-if="!loggedIn">
     <router-link :to="{ name: 'Register' }">Register</router-link>
     |
-    <router-link v-if="!loggedIn" :to="{ name: 'Login' }">
+    <router-link  :to="{ name: 'Login' }">
       Login
     </router-link>
+    </span>
     <span v-else>
-      |
       <router-link :to="{ name: 'Plans' }">Budget Plans</router-link>
       |
       <router-link :to="{ name: 'Categories' }">Categories</router-link>
