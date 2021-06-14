@@ -41,6 +41,7 @@ export default {
       const userData = JSON.parse(userString)
       this.$store.commit('users/SET_USER', userData)
     }
+
     axios.interceptors.response.use(
       (response) => response,
       (error) => {
