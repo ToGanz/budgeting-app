@@ -9,6 +9,7 @@ import NotFound from '@/views/NotFound.vue'
 import NetworkError from '@/views/NetworkError.vue'
 import RegisterUser from '../views/RegisterUser.vue'
 import LoginUser from '../views/LoginUser.vue'
+import UserProfile from '../views/UserProfile.vue'
 
 const routes = [
   {
@@ -25,6 +26,12 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginUser
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: UserProfile,
+    meta: { requiresAuth: true }
   },
   {
     path: '/plans',
