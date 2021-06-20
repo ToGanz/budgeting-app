@@ -67,7 +67,7 @@ export default {
       }
       return errorList
     },
-    register() {
+    editProfile() {
       const user = {}
       if (this.name !== '') {
         user.name = this.name
@@ -84,7 +84,7 @@ export default {
       this.$store
         .dispatch('users/editUser', user)
         .then(() => {
-          this.$router.push({ name: 'Plans' })
+          // this.$router.push({ name: 'Plans' })
         })
         .catch((err) => {
           this.errors = this.beautifyErrors(err.response.data.errors)
