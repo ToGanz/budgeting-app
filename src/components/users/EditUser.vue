@@ -68,27 +68,29 @@ export default {
       return errorList
     },
     editProfile() {
-      const user = {}
-      if (this.name !== '') {
-        user.name = this.name
+
+      let editedUser = {}
+      if (this.user.name) {
+        editedUser.name = this.user.name
       }
 
-      if (this.email !== '') {
-        user.email = this.email
+      if (this.user.email) {
+        editedUser.email = this.user.email
       }
 
-      if (this.password !== '') {
-        user.password = this.password
+      if (this.user.password) {
+        editedUser.password = this.user.password
       }
+      console.log(editedUser)
 
-      this.$store
-        .dispatch('users/editUser', user)
-        .then(() => {
-          // this.$router.push({ name: 'Plans' })
-        })
-        .catch((err) => {
-          this.errors = this.beautifyErrors(err.response.data.errors)
-        })
+      // this.$store
+      //   .dispatch('users/editUser', user)
+      //   .then(() => {
+      //     // this.$router.push({ name: 'Plans' })
+      //   })
+      //   .catch((err) => {
+      //     this.errors = this.beautifyErrors(err.response.data.errors)
+      //   })
     }
   }
 }
