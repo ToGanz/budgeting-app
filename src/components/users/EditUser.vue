@@ -68,8 +68,8 @@ export default {
       return errorList
     },
     editProfile() {
-
       let editedUser = {}
+      
       if (this.user.name) {
         editedUser.name = this.user.name
       }
