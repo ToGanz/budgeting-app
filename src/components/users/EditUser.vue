@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="editProfile">
+    <form @submit.prevent="sendEdit">
 
       <base-input
         v-model="user.name"
@@ -67,9 +67,9 @@ export default {
       }
       return errorList
     },
-    editProfile() {
+    sendEdit() {
       let editedUser = {}
-      
+
       if (this.user.name) {
         editedUser.name = this.user.name
       }
