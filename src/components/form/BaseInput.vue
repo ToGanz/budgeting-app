@@ -8,6 +8,12 @@
     :name="label"
     @input="$emit('update:modelValue', $event.target.value)"
   >
+  <p
+    v-if="error"
+    class="errorMessage"
+  >
+    {{ error }}
+  </p>
 </template>
 
 <script>
