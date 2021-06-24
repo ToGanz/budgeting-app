@@ -5,12 +5,14 @@
     :placeholder="label"
     class="field"
     :value="modelValue"
-    :name="label"
+    :id="label"
     @input="$emit('update:modelValue', $event.target.value)"
+    :aria-describedby="error ? `${label}-error` : null"
   >
   <p
     v-if="error"
     class="errorMessage"
+    :id="`${label}-error`"
   >
     {{ error }}
   </p>
