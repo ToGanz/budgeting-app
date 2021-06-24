@@ -28,5 +28,8 @@ export default {
       }
     }
     return apiClient.post('/auth/login', user)
-  }
+  },
+  editUser(id, user) {
+    return apiClient.put('/users' + id, user)
+  },
 }

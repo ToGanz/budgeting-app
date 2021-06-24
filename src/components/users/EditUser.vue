@@ -83,14 +83,14 @@ export default {
       }
       console.log(editedUser)
 
-      // this.$store
-      //   .dispatch('users/editUser', user)
-      //   .then(() => {
-      //     // this.$router.push({ name: 'Plans' })
-      //   })
-      //   .catch((err) => {
-      //     this.errors = this.beautifyErrors(err.response.data.errors)
-      //   })
+      this.$store
+        .dispatch('users/editUser', editedUser)
+        .then(() => {
+          this.$router.push({ name: 'Plans' })
+        })
+        .catch((err) => {
+          this.errors = this.beautifyErrors(err.response.data.errors)
+        })
     }
   }
 }

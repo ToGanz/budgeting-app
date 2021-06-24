@@ -36,5 +36,19 @@ export default {
   },
   logout(context) {
     context.commit('CLEAR_USER')
+  },
+  async editUser(context, data) {
+    const response = await UserService.editUser(
+      data
+    )
+    const responseData = response.data
+
+    const token = context.getters["users/token"]
+    console.log(token)
+    context.commit('SET_USER', {
+      name: responseData.data.attributes.name,
+      email: responseData.data.attributes.email,
+      token
+    })
   }
 }
