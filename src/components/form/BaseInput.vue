@@ -13,6 +13,7 @@
     v-if="error"
     class="errorMessage"
     :id="`${label}-error`"
+    aria-live="assertive"
   >
     {{ error }}
   </p>
@@ -28,6 +29,10 @@
       },
       modelValue: {
         type: [String, Number],
+        default: ''
+      },
+      error: {
+        type: String,
         default: ''
       }
     },
