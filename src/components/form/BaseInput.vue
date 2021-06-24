@@ -8,6 +8,7 @@
     :id="label"
     @input="$emit('update:modelValue', $event.target.value)"
     :aria-describedby="error ? `${label}-error` : null"
+    :aria-invalid="error ? true : null"
   >
   <p
     v-if="error"
