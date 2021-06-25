@@ -35,19 +35,15 @@
 
 <script>
 export default {
-  // props: {
-  //   user: {
-  //     type: Object,
-  //     required: true
-  //   }
-  // },
+  props: {
+    userToEdit: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
-      user: {
-        name: 'tobi',
-        email: 'user1@test.com',
-        password: ''
-      },
+      user: this.userToEdit,
       errors: null
     }
   },
@@ -70,6 +66,8 @@ export default {
     sendEdit() {
       let editedUser = {}
 
+      const userId = this.$store.getters['users/id']
+
       if (this.user.name) {
         editedUser.name = this.user.name
       }
@@ -81,10 +79,14 @@ export default {
       if (this.user.password) {
         editedUser.password = this.user.password
       }
-      console.log(editedUser)
+
+      const payload = {
+        id: userId,
+        user: editedUser
+      }
 
       this.$store
-        .dispatch('users/editUser', editedUser)
+        .dispatch('users/editUser', payload)
         .then(() => {
           this.$router.push({ name: 'Plans' })
         })

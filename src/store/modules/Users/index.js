@@ -6,6 +6,7 @@ const usersModule = {
   namespaced: true,
   state() {
     return {
+      id: null,
       name: null,
       email: null,
       token: null

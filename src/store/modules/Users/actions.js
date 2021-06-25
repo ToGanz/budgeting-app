@@ -41,12 +41,13 @@ export default {
   },
   async editUser(context, data) {
     const response = await UserService.editUser(
-      data
+      data.id,
+      data.user
     )
     const responseData = response.data
 
-    const token = context.getters["users/token"]
-    console.log(token)
+    const token = context.getters["token"]
+
     context.commit('SET_USER', {
       id: responseData.data.id,
       name: responseData.data.attributes.name,
