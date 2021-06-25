@@ -16,6 +16,7 @@ export default {
     const loginResponseData = loginResponse.data
 
     context.commit('SET_USER', {
+      id: createResponseData.data.id,
       name: createResponseData.data.attributes.name,
       email: createResponseData.data.attributes.email,
       token: loginResponseData.auth_token
@@ -29,6 +30,7 @@ export default {
     const responseData = response.data
 
     context.commit('SET_USER', {
+      id: responseData.id,
       name: responseData.name,
       email: responseData.email,
       token: responseData.auth_token
@@ -46,6 +48,7 @@ export default {
     const token = context.getters["users/token"]
     console.log(token)
     context.commit('SET_USER', {
+      id: responseData.data.id,
       name: responseData.data.attributes.name,
       email: responseData.data.attributes.email,
       token
