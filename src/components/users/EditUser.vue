@@ -45,7 +45,7 @@ export default {
     return {
       user: {
         name: 'tobi',
-        email: 'email@email.com',
+        email: 'user1@test.com',
         password: ''
       },
       errors: null
