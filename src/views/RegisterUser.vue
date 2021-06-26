@@ -1,45 +1,27 @@
 <template>
   <div>
-    <form @submit.prevent="register">
-      <label for="name">
-        Name:
-      </label>
-      <input v-model="name" type="text" name="name" id="name" />
+    <user-form mode="register" @save-data="register"></user-form>
+    <ul>
+      <li v-for="(error, index) in errors" :key="index">
+        {{ error }}
+      </li>
+    </ul>
 
-      <label for="email">
-        Email:
-      </label>
-      <input v-model="email" type="email" name="email" id="email" />
-
-      <label for="password">
-        Password:
-      </label>
-      <input v-model="password" type="password" name="password" id="password" />
-
-      <button type="submit" name="button">
-        Register
-      </button>
-
-      <ul>
-        <li v-for="(error, index) in errors" :key="index">
-          {{ error }}
-        </li>
-      </ul>
-
-      <router-link :to="{ name: 'Login' }">
-        Already have an account? Login.
-      </router-link>
-    </form>
+    <router-link :to="{ name: 'Login' }">
+      Already have an account? Login.
+    </router-link>
   </div>
 </template>
 
 <script>
+import UserForm from '@/components/users/UserForm.vue';
+
 export default {
+  components: {
+    UserForm
+  },
   data() {
     return {
-      name: '',
-      email: '',
-      password: '',
       errors: null
     }
   },
@@ -59,11 +41,11 @@ export default {
       }
       return errorList
     },
-    register() {
+    register(formData) {
       const user = {
-        name: this.name,
-        email: this.email,
-        password: this.password
+        name: formData.name,
+        email: formData.email,
+        password: formData.password
       }
 
       this.$store
