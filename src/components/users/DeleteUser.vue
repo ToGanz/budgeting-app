@@ -10,7 +10,7 @@
 
 <script>
 export default {
-   data() {
+  data() {
     return {
       errors: null
     }
@@ -19,16 +19,18 @@ export default {
     deleteUser() {
       this.errors = null
 
-      const userId = this.$store.getters['users/id']
+      if (confirm('Do you really want to delete your account?')) {
+        const userId = this.$store.getters['users/id']
 
-      this.$store
-        .dispatch('users/deleteUser', { id: userId })
-        .then(() => {
-          this.$router.push({ name: 'Home' })
-        })
-        .catch((err) => {
-          this.errors = err.response.data.errors
-        })
+        this.$store
+          .dispatch('users/deleteUser', { id: userId })
+          .then(() => {
+            this.$router.push({ name: 'Home' })
+          })
+          .catch((err) => {
+            this.errors = err.response.data.errors
+          })
+      }
     }
   }
 }
