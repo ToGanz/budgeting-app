@@ -55,4 +55,7 @@ export default {
     }
     return apiClient.put('/users/' + id, userObject)
   },
+  deleteUser(id) {
+    return apiClient.delete('/users/' + id)
+  },
 }

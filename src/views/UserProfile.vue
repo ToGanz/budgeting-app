@@ -3,14 +3,17 @@
   <p>{{ user.email }}</p>
 
   <edit-user :userToEdit="user"></edit-user>
+  <delete-user></delete-user>
 </template>
 
 <script>
 import EditUser from '@/components/users/EditUser.vue'
+import DeleteUser from '@/components/users/DeleteUser.vue'
 
 export default {
   components: {
-    EditUser
+    EditUser,
+    DeleteUser
   },
   computed: {
     user() {

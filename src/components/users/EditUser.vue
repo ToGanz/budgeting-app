@@ -64,6 +64,7 @@ export default {
       return errorList
     },
     sendEdit() {
+      this.errors = null
       let editedUser = {}
 
       const userId = this.$store.getters['users/id']

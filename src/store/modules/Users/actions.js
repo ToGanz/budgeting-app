@@ -54,5 +54,13 @@ export default {
       email: responseData.data.attributes.email,
       token
     })
+  },
+  async deleteUser(context, data) {
+    const userId = data.id
+    await UserService.deleteUser(
+      userId
+    )
+
+    context.commit('CLEAR_USER')
   }
 }
