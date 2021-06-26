@@ -1,5 +1,8 @@
 <template>
   <div>
+    <base-dialog :show="isLoading" title="Authenticating..." fixed>
+      <base-spinner></base-spinner>
+    </base-dialog>
     <user-form mode="register" @save-data="register"></user-form>
     <ul>
       <li v-for="(error, index) in errors" :key="index">
@@ -14,7 +17,7 @@
 </template>
 
 <script>
-import UserForm from '@/components/users/UserForm.vue';
+import UserForm from '@/components/users/UserForm.vue'
 
 export default {
   components: {
@@ -22,6 +25,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       errors: null
     }
   },
@@ -41,14 +45,16 @@ export default {
       }
       return errorList
     },
-    register(formData) {
+    async register(formData) {
+      this.isLoading = true
+
       const user = {
         name: formData.name,
         email: formData.email,
         password: formData.password
       }
 
-      this.$store
+      await this.$store
         .dispatch('users/registerUser', user)
         .then(() => {
           this.$router.push({ name: 'Plans' })
@@ -56,6 +62,8 @@ export default {
         .catch((err) => {
           this.errors = this.beautifyErrors(err.response.data.errors)
         })
+
+      this.isLoading = false
     }
   }
 }
