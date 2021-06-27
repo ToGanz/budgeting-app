@@ -1,40 +1,29 @@
 <template>
   <div>
-    <form @submit.prevent="sendEdit">
-
-      <base-input
-        v-model="user.name"
-        label="Name"
-        type="text"
-      ></base-input>
-
-      <base-input
-        v-model="user.email"
-        label="Email"
-        type="email"
-      ></base-input>
-
-      <base-input
-        v-model="user.password"
-        label="Password"
-        type="password"
-      ></base-input>
-
-      <button type="submit" name="button">
-        Save
-      </button>
-
-      <ul>
-        <li v-for="(error, index) in errors" :key="index">
-          {{ error }}
-        </li>
-      </ul>
-    </form>
+    <base-dialog :show="isLoading" title="Updating..." fixed>
+      <base-spinner></base-spinner>
+    </base-dialog>
+    <user-form
+      mode="update"
+      :emailToEdit="userToEdit.email"
+      :nameToEdit="userToEdit.name"
+      @save-data="editUser"
+    ></user-form>
+    <ul>
+      <li v-for="(error, index) in errors" :key="index">
+        {{ error }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
+import UserForm from '@/components/users/UserForm.vue'
+
 export default {
+  components: {
+    UserForm
+  },
   props: {
     userToEdit: {
       type: Object,
@@ -44,6 +33,7 @@ export default {
   data() {
     return {
       user: this.userToEdit,
+      isLoading: false,
       errors: null
     }
   },
@@ -63,22 +53,24 @@ export default {
       }
       return errorList
     },
-    sendEdit() {
+    async editUser(formData) {
+      this.isLoading = true
       this.errors = null
+
       let editedUser = {}
 
       const userId = this.$store.getters['users/id']
 
-      if (this.user.name) {
-        editedUser.name = this.user.name
+      if (formData.name) {
+        editedUser.name = formData.name
       }
 
-      if (this.user.email) {
-        editedUser.email = this.user.email
+      if (formData.email) {
+        editedUser.email = formData.email
       }
 
-      if (this.user.password) {
-        editedUser.password = this.user.password
+      if (formData.password) {
+        editedUser.password = formData.password
       }
 
       const payload = {
@@ -86,7 +78,7 @@ export default {
         user: editedUser
       }
 
-      this.$store
+      await this.$store
         .dispatch('users/editUser', payload)
         .then(() => {
           this.$router.push({ name: 'Plans' })
@@ -94,6 +86,8 @@ export default {
         .catch((err) => {
           this.errors = this.beautifyErrors(err.response.data.errors)
         })
+
+      this.isLoading = false
     }
   }
 }

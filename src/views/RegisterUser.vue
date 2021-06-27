@@ -47,7 +47,8 @@ export default {
     },
     async register(formData) {
       this.isLoading = true
-
+      this.errors = null
+      
       const user = {
         name: formData.name,
         email: formData.email,

@@ -47,16 +47,26 @@ export default {
     mode: {
       type: String,
       required: true
+    },
+    emailToEdit: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    nameToEdit: {
+      type: String,
+      required: false,
+      default: ''
     }
   },
   data() {
     return {
       name: {
-        val: '',
+        val: this.nameToEdit,
         isValid: true
       },
       email: {
-        val: '',
+        val: this.emailToEdit,
         isValid: true
       },
       password: {
@@ -93,7 +103,10 @@ export default {
         this.email.isValid = false
         this.formIsValid = false
       }
-      if (this.password.val.length < 6) {
+      if (this.mode === 'register' && this.password.val.length < 6) {
+        this.password.isValid = false
+        this.formIsValid = false
+      } else if (this.mode === 'update' && this.password.val && this.password.val.length < 6) {
         this.password.isValid = false
         this.formIsValid = false
       }
