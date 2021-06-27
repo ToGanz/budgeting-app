@@ -1,6 +1,6 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control" :class="{ invalid: !name.isValid }">
+    <div v-if="mode !== 'login'" class="form-control" :class="{ invalid: !name.isValid }">
       <label for="name">Name</label>
       <input
         type="text"
@@ -95,7 +95,7 @@ export default {
     },
     validateForm() {
       this.formIsValid = true
-      if (this.name.val === '') {
+      if (this.mode !== 'login' && this.name.val === '') {
         this.name.isValid = false
         this.formIsValid = false
       }

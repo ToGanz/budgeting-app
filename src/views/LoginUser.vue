@@ -1,54 +1,48 @@
 <template>
   <div>
-    <form @submit.prevent="login">
-      <label for="email">
-        Email:
-      </label>
-      <input v-model="email" type="email" name="email" value />
-
-      <label for="password">
-        Password:
-      </label>
-      <input v-model="password" type="password" name="password" value />
-
-      <button type="submit" name="button">
-        Login
-      </button>
-
-      <p>{{ error }}</p>
-      
-      <router-link :to="{ name: 'Register'}">
-        Don't have an account? Register.
-      </router-link>
-    </form>
+    <base-dialog :show="isLoading" title="Authenticating..." fixed>
+      <base-spinner></base-spinner>
+    </base-dialog>
+    <user-form mode="login" @save-data="login"></user-form>
+    <p>{{ error }}</p>
+    <router-link :to="{ name: 'Register' }">
+      Don't have an account? Register.
+    </router-link>
   </div>
-
 </template>
 
 <script>
+import UserForm from '@/components/users/UserForm.vue'
+
 export default {
+  components: {
+    UserForm
+  },
   data() {
     return {
-      email: '',
-      password: '',
+      isLoading: false,
       error: null
     }
   },
   methods: {
-    login() {
+    async login(formData) {
+      this.isLoading = true
+      this.errors = null
+
       const user = {
-        email: this.email,
-        password: this.password
+        email: formData.email,
+        password: formData.password
       }
-      this.$store
+      await this.$store
         .dispatch('users/login', user)
         .then(() => {
           this.$router.push({ name: 'Plans' })
         })
-        .catch(err => {
+        .catch((err) => {
           this.error = err.response.data.errors
         })
 
+      this.isLoading = false
     }
   }
 }
