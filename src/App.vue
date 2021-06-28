@@ -19,7 +19,6 @@ export default {
     }
   },
   created() {
-    console.log('created')
     const userString = localStorage.getItem('user')
     if (userString) {
       const userData = JSON.parse(userString)
