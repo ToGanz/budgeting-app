@@ -1,5 +1,8 @@
 <template>
   <navigation-header></navigation-header>
+  <div id="flashMessage" v-if="flashMessage">
+    {{ flashMessage }}
+  </div>
   <router-view />
 </template>
 
@@ -10,8 +13,13 @@ export default {
   components: {
     NavigationHeader
   },
+  computed: {
+    flashMessage() {
+      return this.$store.getters['flashMessage']
+    }
+  },
   created() {
-    console.log("created")
+    console.log('created')
     const userString = localStorage.getItem('user')
     if (userString) {
       const userData = JSON.parse(userString)
@@ -22,6 +30,20 @@ export default {
 </script>
 
 <style>
+@keyframes yellowfade {
+  from {
+    background: yellow;
+  }
+  to {
+    background: transparent;
+  }
+}
+
+#flashMessage {
+  animation-name: yellowfade;
+  animation-duration: 3s;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

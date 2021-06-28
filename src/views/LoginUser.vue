@@ -36,6 +36,17 @@ export default {
       await this.$store
         .dispatch('users/login', user)
         .then(() => {
+          const flashMessage = 'You have successfully logged in.'
+          this.$store.dispatch('setFlashMessage', {
+            message: flashMessage
+          })
+
+          setTimeout(() => {
+            this.$store.dispatch('setFlashMessage', {
+              message: ''
+            })
+          }, 3000)
+
           this.$router.push({ name: 'Plans' })
         })
         .catch((err) => {

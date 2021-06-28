@@ -48,7 +48,7 @@ export default {
     async register(formData) {
       this.isLoading = true
       this.errors = null
-      
+
       const user = {
         name: formData.name,
         email: formData.email,
@@ -58,11 +58,23 @@ export default {
       await this.$store
         .dispatch('users/registerUser', user)
         .then(() => {
+          const flashMessage = 'You are successfully registered.'
+          this.$store.dispatch('setFlashMessage', {
+            message: flashMessage
+          })
+
+          setTimeout(() => {
+            this.$store.dispatch('setFlashMessage', {
+              message: ''
+            })
+          }, 3000)
+
           this.$router.push({ name: 'Plans' })
         })
         .catch((err) => {
           this.errors = this.beautifyErrors(err.response.data.errors)
         })
+      console.log(this.$store.getters.flashMessage)
 
       this.isLoading = false
     }

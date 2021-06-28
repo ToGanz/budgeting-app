@@ -25,6 +25,17 @@ export default {
         this.$store
           .dispatch('users/deleteUser', { id: userId })
           .then(() => {
+            const flashMessage = 'Account deleted.'
+            this.$store.dispatch('setFlashMessage', {
+              message: flashMessage
+            })
+
+            setTimeout(() => {
+              this.$store.dispatch('setFlashMessage', {
+                message: ''
+              })
+            }, 3000)
+            
             this.$router.push({ name: 'Home' })
           })
           .catch((err) => {
