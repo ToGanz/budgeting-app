@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import NProgress from 'nprogress'
 
 import Home from '../views/Home.vue'
 import Plans from '../views/Plans.vue'
@@ -76,7 +75,6 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  NProgress.start()
 
   const loggedIn = localStorage.getItem('user')
 
@@ -87,8 +85,5 @@ router.beforeEach((to, from, next) => {
   }
 })
 
-router.afterEach(() => {
-  NProgress.done()
-})
 
 export default router
