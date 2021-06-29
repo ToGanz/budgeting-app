@@ -74,7 +74,6 @@ export default {
         .catch((err) => {
           this.errors = this.beautifyErrors(err.response.data.errors)
         })
-      console.log(this.$store.getters.flashMessage)
 
       this.isLoading = false
     }

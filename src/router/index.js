@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import store from '@/store/index'
 
 import Home from '../views/Home.vue'
 import Plans from '../views/Plans.vue'
@@ -75,15 +76,29 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-
   const loggedIn = localStorage.getItem('user')
 
   if (to.matched.some((record) => record.meta.requiresAuth) && !loggedIn) {
-    next('/login')
+    const flashMessage = 'Sorry, you are not authorized to view this page.'
+    store.dispatch('setFlashMessage', {
+      message: flashMessage
+    })
+
+    setTimeout(() => {
+      store.dispatch('setFlashMessage', {
+        message: ''
+      })
+    }, 3000)
+
+    if (from.href) { // <--- If this navigation came from a previous page.
+      next(false)
+    } else {  // <--- Must be navigating directly
+      //return { path: '/' }  // <--- Push navigation to the root route.
+      next('/')
+    }
   } else {
     next()
   }
 })
-
 
 export default router
