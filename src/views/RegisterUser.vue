@@ -73,25 +73,6 @@ export default {
       } catch (err) {
         this.errors = this.beautifyErrors(err.response.data.errors)
       }
-      // await this.$store
-      //   .dispatch('users/registerUser', user)
-      //   .then(() => {
-      //     const flashMessage = 'You are successfully registered.'
-      //     this.$store.dispatch('setFlashMessage', {
-      //       message: flashMessage
-      //     })
-
-      //     setTimeout(() => {
-      //       this.$store.dispatch('setFlashMessage', {
-      //         message: ''
-      //       })
-      //     }, 3000)
-
-      //     this.$router.push({ name: 'Plans' })
-      //   })
-      //   .catch((err) => {
-      //     this.errors = this.beautifyErrors(err.response.data.errors)
-      //   })
 
       this.isLoading = false
     }
