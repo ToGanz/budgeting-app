@@ -77,26 +77,23 @@ export default {
         id: userId,
         user: editedUser
       }
+      try {
+        await this.$store.dispatch('users/editUser', payload)
+        const flashMessage = 'Profile updated successfully.'
+        this.$store.dispatch('setFlashMessage', {
+          message: flashMessage
+        })
 
-      await this.$store
-        .dispatch('users/editUser', payload)
-        .then(() => {
-          const flashMessage = 'Profile updated successfully.'
+        setTimeout(() => {
           this.$store.dispatch('setFlashMessage', {
-            message: flashMessage
+            message: ''
           })
+        }, 3000)
 
-          setTimeout(() => {
-            this.$store.dispatch('setFlashMessage', {
-              message: ''
-            })
-          }, 3000)
-
-          this.$router.push({ name: 'Plans' })
-        })
-        .catch((err) => {
-          this.errors = this.beautifyErrors(err.response.data.errors)
-        })
+        this.$router.push({ name: 'Plans' })
+      } catch (err) {
+        this.errors = this.beautifyErrors(err.response.data.errors)
+      }
 
       this.isLoading = false
     }

@@ -1,4 +1,8 @@
 <template>
+  <base-dialog :show="isLoading" title="Deleting..." fixed>
+    <base-spinner></base-spinner>
+  </base-dialog>
+
   <button @click="deleteUser">Delete Profile</button>
 
   <ul>
@@ -12,35 +16,37 @@
 export default {
   data() {
     return {
+      isLoading: false,
       errors: null
     }
   },
   methods: {
-    deleteUser() {
+    async deleteUser() {
+      this.isLoading = true
       this.errors = null
 
       if (confirm('Do you really want to delete your account?')) {
         const userId = this.$store.getters['users/id']
 
-        this.$store
-          .dispatch('users/deleteUser', { id: userId })
-          .then(() => {
-            const flashMessage = 'Account deleted.'
-            this.$store.dispatch('setFlashMessage', {
-              message: flashMessage
-            })
+        try {
+          await this.$store.dispatch('users/deleteUser', { id: userId })
 
-            setTimeout(() => {
-              this.$store.dispatch('setFlashMessage', {
-                message: ''
-              })
-            }, 3000)
-            
-            this.$router.push({ name: 'Home' })
+          const flashMessage = 'Account deleted.'
+          this.$store.dispatch('setFlashMessage', {
+            message: flashMessage
           })
-          .catch((err) => {
-            this.errors = err.response.data.errors
-          })
+
+          setTimeout(() => {
+            this.$store.dispatch('setFlashMessage', {
+              message: ''
+            })
+          }, 3000)
+
+          this.$router.push({ name: 'Home' })
+        } catch (err) {
+          this.errors = err.response.data.errors
+        }
+        this.isLoading = false
       }
     }
   }
