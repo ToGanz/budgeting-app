@@ -36,7 +36,12 @@ export default {
   getPlan(id) {
     return apiClient.get('/plans/' + id)
   },
-  createPlan(plan) {
+  createPlan(title) {
+    const plan = {
+      plan: {
+        title
+      }
+    }
     return apiClient.post('/plans', plan)
   },
   editPlan(id, plan) {

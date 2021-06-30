@@ -5,7 +5,7 @@ export default {
     const response = await PlanService.getPlans()
 
     const responseData = response.data
-    
+
     const plans = []
 
     responseData.data.forEach((plan) => {
@@ -16,5 +16,14 @@ export default {
     })
 
     context.commit('SET_PLANS', plans)
+  },
+  async createPlan(context, data) {
+    const response = await PlanService.createPlan(data.title)
+    const responseData = response.data
+
+    context.commit('ADD_PLAN', {
+      id: responseData.data.id,
+      ...responseData.data.attributes
+    })
   }
 }
