@@ -29,6 +29,22 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'),
+    url(./fonts/Roboto/Roboto-Regular.ttf) format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto'),
+    url(./fonts/Roboto/Roboto-Bold.ttf) format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 @keyframes yellowfade {
   from {
     background: yellow;
