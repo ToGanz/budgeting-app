@@ -7,7 +7,10 @@
     <p>{{ error }}</p>
   </base-dialog>
   <create-plan></create-plan>
-  <plans-list :plans="plans"></plans-list>
+  <div v-if="isLoading">
+    <base-spinner></base-spinner>
+  </div>
+  <plans-list v-else :plans="plans"></plans-list>
 </template>
 
 <script>
@@ -39,7 +42,7 @@ export default {
       } catch (error) {
         this.error = error.message || 'Something went wrong!'
       }
-      this.isLoading = true
+      this.isLoading = false
     },
     handleError() {
       this.error = null
