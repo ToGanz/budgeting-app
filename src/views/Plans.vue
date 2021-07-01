@@ -1,4 +1,11 @@
 <template>
+  <base-dialog
+    :show="!!error"
+    title="An error occurred!"
+    @close="handleError"
+  >
+    <p>{{ error }}</p>
+  </base-dialog>
   <create-plan></create-plan>
   <plans-list :plans="plans"></plans-list>
 </template>
@@ -14,6 +21,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       error: null
     }
   },
@@ -25,16 +33,20 @@ export default {
   },
   methods: {
     async getPlans() {
+      this.isLoading = true
       try {
         await this.$store.dispatch('plans/getPlans')
       } catch (error) {
         this.error = error.message || 'Something went wrong!'
-        console.log(this.error)
       }
+      this.isLoading = true
+    },
+    handleError() {
+      this.error = null
     }
   },
   created() {
-    this.getPlans();
+    this.getPlans()
   }
 }
 </script>
