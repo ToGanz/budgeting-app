@@ -4,5 +4,8 @@ export default {
   },
   ADD_PLAN(state, payload) {
     state.plans.push(payload)
+  },
+  SET_PLAN(state, payload) {
+    state.plan = payload
   }
 }

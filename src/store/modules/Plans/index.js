@@ -6,7 +6,8 @@ const plansModule = {
   namespaced: true,
   state() {
     return {
-      plans: []
+      plans: [],
+      plan: null
     };
   },
   getters,
