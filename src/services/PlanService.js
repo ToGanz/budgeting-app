@@ -44,8 +44,13 @@ export default {
     }
     return apiClient.post('/plans', plan)
   },
-  editPlan(id, plan) {
-    return apiClient.put('/plans' + id, plan)
+  editPlan(id, title) {
+    const plan = {
+      plan: {
+        title
+      }
+    }
+    return apiClient.put('/plans/' + id, plan)
   },
   deletePlan(id) {
     return apiClient.delete('/plans/' + id)

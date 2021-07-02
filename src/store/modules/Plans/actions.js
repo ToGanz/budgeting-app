@@ -35,5 +35,17 @@ export default {
       ...responseData.data.attributes
     })
     
-  }
+  },
+  async editPlan(context, data) {
+    const response = await PlanService.editPlan(
+      data.id,
+      data.plan.title
+    )
+    const responseData = response.data
+
+    context.commit('SET_PLAN', {
+      id: responseData.data.id,
+      ...responseData.data.attributes
+    })
+  },
 }

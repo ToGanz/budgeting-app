@@ -6,11 +6,14 @@
   >
     <p>{{ error }}</p>
   </base-dialog>
+  <base-dialog :show="showEdit" title="Edit Plan" @close="toggleEdit">
+    <edit-plan :planToEdit="plan" @update="toggleEdit"></edit-plan>
+  </base-dialog>
   <div v-if="isLoading">
     <base-spinner></base-spinner>
   </div>
   <div v-else>
-    <plan-details :plan="plan"></plan-details>
+    <plan-details :plan="plan" @click="toggleEdit"></plan-details>
     <transactions-list :transactions="transactions"></transactions-list>
   </div>
 </template>
@@ -18,17 +21,20 @@
 <script>
 import PlanDetails from '@/components/plans/PlanDetails.vue'
 import TransactionsList from '@/components/transactions/TransactionsList.vue'
+import EditPlan from '@/components/plans/EditPlan.vue'
 
 export default {
   components: {
     PlanDetails,
-    TransactionsList
+    TransactionsList,
+    EditPlan
   },
   props: ['id'],
   data() {
     return {
       isLoading: false,
       error: null,
+      showEdit: false,
       transactions: [
         {
           description: 'transaction 1',
@@ -72,6 +78,9 @@ export default {
     },
     handleError() {
       this.error = null
+    },
+    toggleEdit() {
+      this.showEdit = !this.showEdit
     }
   },
   created() {
