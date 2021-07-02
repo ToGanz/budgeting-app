@@ -29,18 +29,14 @@ export default {
   async getPlan(context, data) {
     const response = await PlanService.getPlan(data.id)
     const responseData = response.data
-    
+
     context.commit('SET_PLAN', {
       id: responseData.data.id,
       ...responseData.data.attributes
     })
-    
   },
   async editPlan(context, data) {
-    const response = await PlanService.editPlan(
-      data.id,
-      data.plan.title
-    )
+    const response = await PlanService.editPlan(data.id, data.plan.title)
     const responseData = response.data
 
     context.commit('SET_PLAN', {
@@ -48,4 +44,8 @@ export default {
       ...responseData.data.attributes
     })
   },
+  async deletePlan(context, data) {
+    await PlanService.deletePlan(data.id)
+    context.commit('REMOVE_PLAN', { id: data.id })
+  }
 }

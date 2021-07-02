@@ -7,7 +7,10 @@
     <p>{{ error }}</p>
   </base-dialog>
   <base-dialog :show="showEdit" title="Edit Plan" @close="toggleEdit">
+    <div>
     <edit-plan :planToEdit="plan" @update="toggleEdit"></edit-plan>
+    <delete-plan :id="plan.id"></delete-plan>
+    </div>
   </base-dialog>
   <div v-if="isLoading">
     <base-spinner></base-spinner>
@@ -22,12 +25,14 @@
 import PlanDetails from '@/components/plans/PlanDetails.vue'
 import TransactionsList from '@/components/transactions/TransactionsList.vue'
 import EditPlan from '@/components/plans/EditPlan.vue'
+import DeletePlan from '@/components/plans/DeletePlan.vue'
 
 export default {
   components: {
     PlanDetails,
     TransactionsList,
-    EditPlan
+    EditPlan,
+    DeletePlan
   },
   props: ['id'],
   data() {
