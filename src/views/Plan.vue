@@ -17,20 +17,20 @@
   </div>
   <div v-else>
     <plan-details :plan="plan" @click="toggleEdit"></plan-details>
-    <transactions-list :transactions="transactions"></transactions-list>
+    <transactions :planId="plan.id"></transactions>
   </div>
 </template>
 
 <script>
 import PlanDetails from '@/components/plans/PlanDetails.vue'
-import TransactionsList from '@/components/transactions/TransactionsList.vue'
+import Transactions from '@/components/transactions/Transactions.vue'
 import EditPlan from '@/components/plans/EditPlan.vue'
 import DeletePlan from '@/components/plans/DeletePlan.vue'
 
 export default {
   components: {
     PlanDetails,
-    TransactionsList,
+    Transactions,
     EditPlan,
     DeletePlan
   },

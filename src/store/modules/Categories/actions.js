@@ -27,7 +27,10 @@ export default {
     })
   },
   async editCategory(context, data) {
-    const response = await CategoryService.editCategory(data.id, data.category.name)
+    const response = await CategoryService.editCategory(
+      data.id,
+      data.category.name
+    )
     const responseData = response.data
 
     context.commit('EDIT_CATEGORY', {

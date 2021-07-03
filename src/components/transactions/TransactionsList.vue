@@ -6,10 +6,10 @@
       class="transaction-list"
     >
       <li>{{ transaction.description }}</li>
-      <li>{{ transaction.category }}</li>
+      <li>{{ transaction.categoryId }}</li>
       <li>{{ transaction.spending }}</li>
       <li>{{ transaction.amount }}</li>
-      <li>{{ transaction.date }}</li>
+      <li>{{ transaction.created_at }}</li>
     </ul>
   </div>
 </template>
