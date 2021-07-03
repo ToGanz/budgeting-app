@@ -54,5 +54,27 @@ export default {
   },
   deletePlan(id) {
     return apiClient.delete('/plans/' + id)
+  },
+  getTransactions(planId) {
+    return apiClient.get('/plans/' + planId + '/transactions')
+  },
+  createTransaction(planId, description, amount, categoryId) {
+    const transaction = {
+      transaction: {
+        description,
+        amount,
+        categoryId
+      }
+    }
+    return apiClient.post('/plans/' + planId + '/transactions', transaction)
+  },
+  editTransaction(planId, transactionId, transaction) {
+    const transactionObject = {
+      transaction
+    }
+    return apiClient.put('/plans/'+ planId + '/transactions/' + transactionId, transactionObject)
+  },
+  deleteTransaction(planId, transactionId) {
+    return apiClient.delete('/plans/' + planId + '/transactions/' + transactionId)
   }
 }
