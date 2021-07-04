@@ -6,6 +6,7 @@
   >
     <p>{{ error }}</p>
   </base-dialog>
+  <create-transaction :planId="planId"></create-transaction>
   <div v-if="isLoading">
     <base-spinner></base-spinner>
   </div>
@@ -17,10 +18,12 @@
 
 <script>
 import TransactionsList from '@/components/transactions/TransactionsList.vue'
+import CreateTransaction from '@/components/transactions/CreateTransaction.vue'
 
 export default {
   components: {
-    TransactionsList
+    TransactionsList,
+    CreateTransaction
   },
   props: {
     planId: {

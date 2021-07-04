@@ -63,7 +63,7 @@ export default {
       transaction: {
         description,
         amount,
-        categoryId
+        category_id: categoryId
       }
     }
     return apiClient.post('/plans/' + planId + '/transactions', transaction)

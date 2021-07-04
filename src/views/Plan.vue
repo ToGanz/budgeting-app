@@ -17,7 +17,12 @@
   </div>
   <div v-else>
     <plan-details :plan="plan" @click="toggleEdit"></plan-details>
-    <transactions :planId="plan.id"></transactions>
+    
+    <transactions v-if="categories.length > 0" :planId="plan.id"></transactions>
+    <div v-else>
+      To add a transaction
+      <router-link :to="{ name: 'Categories' }">create a Category first.</router-link>
+    </div>
   </div>
 </template>
 
@@ -40,35 +45,16 @@ export default {
       isLoading: false,
       error: null,
       showEdit: false,
-      transactions: [
-        {
-          description: 'transaction 1',
-          category: 'neccessities',
-          spending: true,
-          amount: 12.0,
-          date: '12.06.2021'
-        },
-        {
-          description: 'transaction 2',
-          category: 'neccessities',
-          spending: true,
-          amount: 11.0,
-          date: '11.06.2021'
-        },
-        {
-          description: 'transaction 3',
-          category: 'neccessities',
-          spending: true,
-          amount: 10.0,
-          date: '10.06.2021'
-        }
-      ]
     }
   },
   computed: {
     plan() {
       const plan = this.$store.getters['plans/plan']
       return plan
+    },
+    categories() {
+      const categories = this.$store.getters['categories/categories']
+      return categories
     }
   },
   methods: {
@@ -76,6 +62,15 @@ export default {
       this.isLoading = true
       try {
         await this.$store.dispatch('plans/getPlan', { id: this.id })
+      } catch (error) {
+        this.error = error.message || 'Something went wrong!'
+      }
+      this.isLoading = false
+    },
+    async getCategories() {
+      this.isLoading = true
+      try {
+        await this.$store.dispatch('categories/getCategories')
       } catch (error) {
         this.error = error.message || 'Something went wrong!'
       }
@@ -90,6 +85,7 @@ export default {
   },
   created() {
     this.getPlan()
+    this.getCategories()
   }
 }
 </script>

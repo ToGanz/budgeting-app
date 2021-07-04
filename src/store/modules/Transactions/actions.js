@@ -26,10 +26,10 @@ export default {
       data.categoryId
     )
     const responseData = response.data
-
     context.commit('ADD_TRANSACTION', {
       id: responseData.data.id,
-      ...responseData.data.attributes
+      ...responseData.data.attributes,
+      categoryId: responseData.data.relationships.category.data.id
     })
   },
   async editTransaction(context, data) {
