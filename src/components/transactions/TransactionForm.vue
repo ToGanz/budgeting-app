@@ -23,12 +23,11 @@
     </div>
     <div class="form-control" :class="{ invalid: !category.isValid }">
       <label for="category">Category</label>
-      <select v-model="category.val" id="category">
+      <select v-model="category.val" id="category" @blur="clearValidity('category')">
         <option
           v-for="cat in categories"
           :key="cat.id"
           :value="cat.id"
-          @blur="clearValidity('category')"
         >
           {{ cat.name }}
         </option>
@@ -128,6 +127,9 @@ export default {
       }
 
       this.$emit('save-data', formData)
+      this.description.val = ''
+      this.amount.val = ''
+      this.category.val = ''
     }
   }
 }

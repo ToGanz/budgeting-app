@@ -75,6 +75,7 @@ export default {
       }
 
       this.$emit('save-data', formData)
+      this.name.val = ''
     }
   }
 }
