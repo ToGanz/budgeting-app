@@ -21,9 +21,9 @@
       />
       <p v-if="!amount.isValid">Amount invalid.</p>
     </div>
-    <div class="form-control" :class="{ invalid: !category.isValid }">
+    <div class="form-control" :class="{ invalid: !categoryId.isValid }">
       <label for="category">Category</label>
-      <select v-model="category.val" id="category" @blur="clearValidity('category')">
+      <select v-model="categoryId.val" id="category" @blur="clearValidity('categoryId')">
         <option
           v-for="cat in categories"
           :key="cat.id"
@@ -32,7 +32,7 @@
           {{ cat.name }}
         </option>
       </select>
-      <p v-if="!category.isValid">Category invalid.</p>
+      <p v-if="!categoryId.isValid">Category invalid.</p>
     </div>
     <p v-if="!formIsValid">
       Please fix the above errors and submit again.
@@ -59,7 +59,7 @@ export default {
       required: false,
       default: 0
     },
-    categoryToEdit: {
+    categoryIdToEdit: {
       type: String,
       required: false,
       default: ''
@@ -75,8 +75,8 @@ export default {
         val: this.amountToEdit,
         isValid: true
       },
-      category: {
-        val: this.categoryToEdit,
+      categoryId: {
+        val: this.categoryIdToEdit,
         isValid: true
       },
       formIsValid: true
@@ -107,8 +107,8 @@ export default {
         this.description.isValid = false
         this.formIsValid = false
       }
-      if (this.category.val === '') {
-        this.category.isValid = false
+      if (this.categoryId.val === '') {
+        this.categoryId.isValid = false
         this.formIsValid = false
       }
       
@@ -123,13 +123,13 @@ export default {
       const formData = {
         description: this.description.val,
         amount: this.amount.val,
-        categoryId: this.category.val
+        categoryId: this.categoryId.val
       }
 
       this.$emit('save-data', formData)
       this.description.val = ''
       this.amount.val = ''
-      this.category.val = ''
+      this.categoryId.val = ''
     }
   }
 }

@@ -43,7 +43,8 @@ export default {
 
     context.commit('EDIT_TRANSACTION', {
       id: responseData.data.id,
-      ...responseData.data.attributes
+      ...responseData.data.attributes,
+      categoryId: responseData.data.relationships.category.data.id
     })
   },
   async deleteTransaction(context, data) {
