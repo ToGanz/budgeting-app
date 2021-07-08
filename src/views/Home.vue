@@ -28,10 +28,23 @@
           <p
             class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0"
           >
-            Keep your finances in check. Track your income and expanses with a simple user experience.
+            Keep your finances in check. Track your income and expanses
+            with a simple user experience.
           </p>
           <div
             class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
+            v-if="loggedIn"
+          >
+            <router-link
+              :to="{ name: 'Plans' }"
+              class="w-1/2 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+            >
+              Get started
+            </router-link>
+          </div>
+          <div
+            class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
+            v-else
           >
             <div class="rounded-md shadow">
               <router-link
@@ -64,8 +77,13 @@
 </template>
 
 <script>
+import { authComputed } from '@/store/helpers.js'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  computed: {
+    loggedIn: authComputed['users/loggedIn']
+  }
 }
 </script>
 
