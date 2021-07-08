@@ -1,9 +1,11 @@
 <template>
   <navigation-header></navigation-header>
-  <div id="flashMessage" v-if="flashMessage">
-    {{ flashMessage }}
+  <div class="relative bg-white">
+    <div id="flashMessage" v-if="flashMessage">
+      {{ flashMessage }}
+    </div>
+    <router-view />
   </div>
-  <router-view />
 </template>
 
 <script>

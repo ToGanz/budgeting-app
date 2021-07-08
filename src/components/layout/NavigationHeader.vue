@@ -1,5 +1,5 @@
 <template>
-  <Popover open="true" class="relative bg-white">
+  <Popover open="true" class="relative bg-white z-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
       <div
         class="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10"
