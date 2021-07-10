@@ -39,7 +39,7 @@
   height: 7px;
   border-radius: 50%;
   /* background: var(--green); */
-  background: green;
+  background: rgb(79, 70, 229);
 
   margin: -4px 0 0 -4px;
 }
