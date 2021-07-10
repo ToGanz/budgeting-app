@@ -6,6 +6,13 @@
       <main
         class="flex flex-wrap mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28"
       >
+      <div class="max-w-md">
+          <img
+            class="h-full w-full object-cover"
+            src="../assets/images/SavingMoney.svg"
+            alt="Picture of woman with a piggy bank"
+          />
+        </div>
         <div class="sm:text-center lg:text-left">
           <h1
             class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl"
@@ -28,7 +35,7 @@
           >
             <router-link
               :to="{ name: 'Plans' }"
-              class="w-1/2 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+              class="sm:w-1/2 flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
             >
               Get started
             </router-link>
@@ -54,13 +61,6 @@
               </a>
             </div>
           </div>
-        </div>
-        <div class="max-w-md">
-          <img
-            class="h-full w-full object-cover"
-            src="../assets/images/SavingMoney.svg"
-            alt="Picture of woman with a piggy bank"
-          />
         </div>
       </main>
     </div>
