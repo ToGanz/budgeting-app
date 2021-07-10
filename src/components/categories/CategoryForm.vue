@@ -1,20 +1,31 @@
 <template>
-  <form @submit.prevent="submitForm">
-    <div class="form-control" :class="{ invalid: !name.isValid }">
-      <label for="name">Name</label>
-      <input
-        type="text"
-        id="name"
-        v-model.trim="name.val"
-        @blur="clearValidity('name')"
-      />
-      <p v-if="!name.isValid">Name must not be empty.</p>
+  <form @submit.prevent="submitForm" class="mt-8 space-y-6">
+    <div class="rounded-md shadow-sm -space-y-px">
+      <div :class="{ invalid: !name.isValid }">
+        <label for="name" class="sr-only">Category</label>
+        <input
+          type="text"
+          id="name"
+          placeholder="Category"
+          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          v-model.trim="name.val"
+          @blur="clearValidity('name')"
+        />
+        <p v-if="!name.isValid">Name must not be empty.</p>
+      </div>
     </div>
 
     <p v-if="!formIsValid">
       Please fix the above errors and submit again.
     </p>
-    <base-button>{{ submitButtonCaption }}</base-button>
+    <div>
+      <button
+        type="submit"
+        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        {{ submitButtonCaption }}
+      </button>
+    </div>
   </form>
 </template>
 

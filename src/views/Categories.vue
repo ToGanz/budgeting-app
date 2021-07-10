@@ -6,6 +6,11 @@
   >
     <p>{{ error }}</p>
   </base-dialog>
+  <img
+    class="mx-auto h-64 w-auto"
+    src="@/assets/images/money_negotiation.svg"
+    alt="Workflow"
+  />
   <create-category></create-category>
   <div v-if="isLoading">
     <base-spinner></base-spinner>

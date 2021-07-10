@@ -3,7 +3,12 @@
     <base-spinner></base-spinner>
   </base-dialog>
 
-  <button @click="deleteCategory">Delete Category</button>
+  <button
+    class="text-indigo-600 hover:text-indigo-900"
+    @click="deleteCategory"
+  >
+    Delete
+  </button>
 
   <ul>
     <li v-for="(error, index) in errors" :key="index">
@@ -20,6 +25,7 @@ export default {
       errors: null
     }
   },
+  emits: ['delete'],
   props: ['id'],
   methods: {
     async deleteCategory() {
@@ -32,7 +38,9 @@ export default {
         )
       ) {
         try {
-          await this.$store.dispatch('categories/deleteCategory', { id: this.id })
+          await this.$store.dispatch('categories/deleteCategory', {
+            id: this.id
+          })
 
           const flashMessage = 'Category deleted.'
           this.$store.dispatch('setFlashMessage', {
@@ -44,12 +52,15 @@ export default {
               message: ''
             })
           }, 3000)
-          
+          this.close()
         } catch (err) {
           this.errors = err.response.data.errors
         }
         this.isLoading = false
       }
+    },
+    close() {
+      this.$emit('delete')
     }
   }
 }

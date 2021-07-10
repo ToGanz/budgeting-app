@@ -3,12 +3,28 @@
     <base-dialog :show="isLoading" title="Creating Category.." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
-    <category-form mode="create" @save-data="createCategory"></category-form>
-    <ul>
-      <li v-for="(error, index) in errors" :key="index">
-        {{ error }}
-      </li>
-    </ul>
+    <div
+      class="flex items-center justify-center bg-gray-50 py-2 px-4 sm:px-6 lg:px-8"
+    >
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <h2
+            class="mt-6 text-center text-3xl font-extrabold text-gray-900"
+          >
+            Create a Category
+          </h2>
+        </div>
+        <category-form
+          mode="create"
+          @save-data="createCategory"
+        ></category-form>
+        <ul>
+          <li v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -47,7 +63,6 @@ export default {
             message: ''
           })
         }, 3000)
-
       } catch (err) {
         this.errors = err.response.data.errors
       }
