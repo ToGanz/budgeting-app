@@ -8,9 +8,14 @@
   </base-dialog>
   <img
     class="mx-auto h-64 w-auto"
-    src="@/assets/images/money_negotiation.svg"
+    src="@/assets/images/categories.svg"
     alt="Workflow"
   />
+   <h2
+            class="mt-6 text-center text-3xl font-extrabold text-gray-900"
+          >
+            Categories
+          </h2>
   <create-category></create-category>
   <div v-if="isLoading">
     <base-spinner></base-spinner>
