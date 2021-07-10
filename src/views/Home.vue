@@ -1,19 +1,10 @@
 <template>
-  <div class="max-w-7xl mx-auto z-5 ">
+  <div class="max-w-7xl mx-auto">
     <div
-      class="relative pb-4 bg-white sm:pb-8 md:pb-10 lg:max-w-2xl lg:w-full lg:pb-14 xl:pb-16"
+      class="relative z-10 pb-4 bg-white sm:pb-8 md:pb-10 lg:w-full lg:pb-14 xl:pb-16"
     >
-      <svg
-        class="hidden lg:block absolute right-0 inset-y-0 h-full w-48 text-white transform translate-x-1/2"
-        fill="currentColor"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <polygon points="50,0 100,0 50,100 0,100" />
-      </svg>
       <main
-        class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28"
+        class="flex flex-wrap mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28"
       >
         <div class="sm:text-center lg:text-left">
           <h1
@@ -64,15 +55,15 @@
             </div>
           </div>
         </div>
+        <div class="max-w-md">
+          <img
+            class="h-full w-full object-cover"
+            src="../assets/images/SavingMoney.svg"
+            alt="Picture of woman with a piggy bank"
+          />
+        </div>
       </main>
     </div>
-  </div>
-  <div class="z-2 max-w-2xl">
-    <img
-      class="h-full w-full object-cover"
-      src="../assets/images/SavingMoney.svg"
-      alt="Picture of woman with a piggy bank"
-    />
   </div>
 </template>
 
@@ -87,32 +78,4 @@ export default {
 }
 </script>
 
-<style>
-.title {
-  font-size: clamp(2.5rem, 3.2vw + 2rem, 4rem);
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  background-image: linear-gradient(
-    90deg,
-    rgb(2, 0, 36) 0%,
-    rgb(9, 9, 121) 57%,
-    rgb(0, 212, 255) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* font-size: clamp(2.5rem, 3.2vw + 2rem, 4rem);
-  min-height: 0vh;
-  font-family: silkabold;
-  text-align: center;
-  line-height: 1.2;
-  color: transparent;
-  margin: 32px;
-  background: linear-gradient(
-      90deg,
-      rgb(2, 0, 36) 0%,
-      rgb(9, 9, 121) 57%,
-      rgb(0, 212, 255) 100%
-    )
-    text rgb(2, 0, 36); */
-}
-</style>
+<style></style>
