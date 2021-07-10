@@ -1,4 +1,9 @@
 <template>
+  <img
+    class="mx-auto h-64 w-auto"
+    src="@/assets/images/profile.svg"
+    alt="Workflow"
+  />
   <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
     Profile
   </h1>
