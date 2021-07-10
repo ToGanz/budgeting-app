@@ -3,17 +3,36 @@
     <base-dialog :show="isLoading" title="Updating..." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
-    <user-form
-      mode="update"
-      :emailToEdit="userToEdit.email"
-      :nameToEdit="userToEdit.name"
-      @save-data="editUser"
-    ></user-form>
-    <ul>
-      <li v-for="(error, index) in errors" :key="index">
-        {{ error }}
-      </li>
-    </ul>
+
+    <div
+      class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+    >
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <img
+            class="mx-auto h-12 w-auto"
+            src="@/assets/images/Money-backGuarantee.svg"
+            alt="Workflow"
+          />
+          <h2
+            class="mt-6 text-center text-3xl font-extrabold text-gray-900"
+          >
+            Edit your profile
+          </h2>
+        </div>
+        <user-form
+          mode="update"
+          :emailToEdit="userToEdit.email"
+          :nameToEdit="userToEdit.name"
+          @save-data="editUser"
+        ></user-form>
+        <ul>
+          <li v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 

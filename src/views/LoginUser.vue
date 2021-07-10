@@ -3,11 +3,37 @@
     <base-dialog :show="isLoading" title="Authenticating..." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
-    <user-form mode="login" @save-data="login"></user-form>
-    <p>{{ error }}</p>
-    <router-link :to="{ name: 'Register' }">
-      Don't have an account? Register.
-    </router-link>
+
+    <div
+      class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+    >
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <img
+            class="mx-auto h-12 w-auto"
+            src="@/assets/images/Money-backGuarantee.svg"
+            alt="Workflow"
+          />
+          <h2
+            class="mt-6 text-center text-3xl font-extrabold text-gray-900"
+          >
+            Sign in to your account
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600">
+            Don't have an account?
+            {{ ' ' }}
+            <router-link
+              :to="{ name: 'Register' }"
+              class="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Register.
+            </router-link>
+          </p>
+        </div>
+        <user-form mode="login" @save-data="login"></user-form>
+        <p>{{ error }}</p>
+      </div>
+    </div>
   </div>
 </template>
 

@@ -3,13 +3,20 @@
     <base-spinner></base-spinner>
   </base-dialog>
 
-  <button @click="deleteUser">Delete Profile</button>
+  <div class="pb-10">
+    <button
+      @click="deleteUser"
+      class=" px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700 md:py-4 md:text-lg md:px-10"
+    >
+      Delete account
+    </button>
 
-  <ul>
-    <li v-for="(error, index) in errors" :key="index">
-      {{ error }}
-    </li>
-  </ul>
+    <ul>
+      <li v-for="(error, index) in errors" :key="index">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>

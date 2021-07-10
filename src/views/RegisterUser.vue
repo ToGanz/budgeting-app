@@ -3,16 +3,40 @@
     <base-dialog :show="isLoading" title="Authenticating..." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
-    <user-form mode="register" @save-data="register"></user-form>
-    <ul>
-      <li v-for="(error, index) in errors" :key="index">
-        {{ error }}
-      </li>
-    </ul>
-
-    <router-link :to="{ name: 'Login' }">
-      Already have an account? Login.
-    </router-link>
+    <div
+      class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8"
+    >
+      <div class="max-w-md w-full space-y-8">
+        <div>
+          <img
+            class="mx-auto h-12 w-auto"
+            src="@/assets/images/Money-backGuarantee.svg"
+            alt="Workflow"
+          />
+          <h2
+            class="mt-6 text-center text-3xl font-extrabold text-gray-900"
+          >
+            Register your account
+          </h2>
+          <p class="mt-2 text-center text-sm text-gray-600">
+            Already have an account?
+            {{ ' ' }}
+            <router-link
+              :to="{ name: 'Login' }"
+              class="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Login.
+            </router-link>
+          </p>
+        </div>
+        <user-form mode="register" @save-data="register"></user-form>
+        <ul>
+          <li v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
