@@ -52,12 +52,15 @@ export default {
               message: ''
             })
           }, 3000)
-          this.close()
         } catch (err) {
           this.errors = err.response.data.errors
         }
-        this.isLoading = false
       }
+      
+      if (!this.errors) {
+        this.close()
+      }
+      this.isLoading = false
     },
     close() {
       this.$emit('delete')
