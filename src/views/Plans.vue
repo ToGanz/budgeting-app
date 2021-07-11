@@ -6,6 +6,16 @@
   >
     <p>{{ error }}</p>
   </base-dialog>
+
+  <img
+    class="mx-auto h-64 w-auto"
+    src="@/assets/images/Invest.svg"
+    alt="Workflow"
+  />
+  <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+    Budget Plans
+  </h2>
+
   <create-plan></create-plan>
   <div v-if="isLoading">
     <base-spinner></base-spinner>

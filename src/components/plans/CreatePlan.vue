@@ -3,12 +3,18 @@
     <base-dialog :show="isLoading" title="Creating Plan.." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
-    <plan-form mode="create" @save-data="createPlan"></plan-form>
-    <ul>
-      <li v-for="(error, index) in errors" :key="index">
-        {{ error }}
-      </li>
-    </ul>
+    <div
+      class="flex items-center justify-center bg-gray-50 py-2 px-4 sm:px-6 lg:px-8"
+    >
+      <div class="max-w-md w-full space-y-8">
+        <plan-form mode="create" @save-data="createPlan"></plan-form>
+        <ul>
+          <li v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -47,7 +53,6 @@ export default {
             message: ''
           })
         }, 3000)
-
       } catch (err) {
         this.errors = err.response.data.errors
       }
