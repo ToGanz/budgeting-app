@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>{{ plan.title }}</h2>
+    <h2 class="mt-6 cursor-pointer text-center text-3xl font-extrabold text-gray-900">
+      {{ plan.title }}
+    </h2>
   </div>
 </template>
 
@@ -17,3 +19,4 @@ export default {
   }
 }
 </script>
+

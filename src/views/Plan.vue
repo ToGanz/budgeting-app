@@ -8,20 +8,31 @@
   </base-dialog>
   <base-dialog :show="showEdit" title="Edit Plan" @close="toggleEdit">
     <div>
-    <edit-plan :planToEdit="plan" @update="toggleEdit"></edit-plan>
-    <delete-plan :id="plan.id"></delete-plan>
+      <edit-plan :planToEdit="plan" @update="toggleEdit"></edit-plan>
+      <delete-plan :id="plan.id"></delete-plan>
     </div>
   </base-dialog>
+  <img
+    class="mx-auto h-64 w-auto"
+    src="@/assets/images/FinanceProfessional.svg"
+    alt="Workflow"
+  />
+
   <div v-if="isLoading">
     <base-spinner></base-spinner>
   </div>
   <div v-else>
     <plan-details :plan="plan" @click="toggleEdit"></plan-details>
-    
-    <transactions v-if="categories.length > 0" :planId="plan.id"></transactions>
+
+    <transactions
+      v-if="categories.length > 0"
+      :planId="plan.id"
+    ></transactions>
     <div v-else>
       To add a transaction
-      <router-link :to="{ name: 'Categories' }">create a Category first.</router-link>
+      <router-link :to="{ name: 'Categories' }">
+        create a Category first.
+      </router-link>
     </div>
   </div>
 </template>
@@ -44,7 +55,7 @@ export default {
     return {
       isLoading: false,
       error: null,
-      showEdit: false,
+      showEdit: false
     }
   },
   computed: {
