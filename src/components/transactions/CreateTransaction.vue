@@ -3,15 +3,22 @@
     <base-dialog :show="isLoading" title="Creating Transaction.." fixed>
       <base-spinner></base-spinner>
     </base-dialog>
-    <transaction-form
-      mode="create"
-      @save-data="createTransaction"
-    ></transaction-form>
-    <ul>
-      <li v-for="(error, index) in errors" :key="index">
-        {{ error }}
-      </li>
-    </ul>
+    <div
+      class="flex items-center justify-center bg-gray-50 py-2 px-4 sm:px-6 lg:px-8"
+    >
+      <div class="max-w-md w-full space-y-8">
+        <h4 class="pt-12">Add Transaction</h4>
+        <transaction-form
+          mode="create"
+          @save-data="createTransaction"
+        ></transaction-form>
+        <ul>
+          <li v-for="(error, index) in errors" :key="index">
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 

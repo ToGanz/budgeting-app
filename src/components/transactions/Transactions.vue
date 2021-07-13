@@ -6,7 +6,24 @@
   >
     <p>{{ error }}</p>
   </base-dialog>
-  <create-transaction :planId="planId"></create-transaction>
+
+  <div class="flex place-content-around">
+    <h2 class="mt-6 cursor-pointer text-center text-xl font-extrabold text-gray-700">
+      Transactions
+    </h2>
+    <button
+      @click="toggleShowCreate"
+      class="w-12 py-1 px-2 mt-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    >
+      <MinusIcon v-if="showCreate" class="h-10 w-8 text-white-700" />
+      <PlusIcon v-else class="h-10 w-8 text-white-700" />
+    </button>
+  </div>
+  <create-transaction
+    v-if="showCreate"
+    :planId="planId"
+  ></create-transaction>
+
   <div v-if="isLoading">
     <base-spinner></base-spinner>
   </div>
@@ -19,11 +36,14 @@
 <script>
 import TransactionsList from '@/components/transactions/TransactionsList.vue'
 import CreateTransaction from '@/components/transactions/CreateTransaction.vue'
+import { PlusIcon, MinusIcon } from '@heroicons/vue/solid'
 
 export default {
   components: {
     TransactionsList,
-    CreateTransaction
+    CreateTransaction,
+    PlusIcon,
+    MinusIcon
   },
   props: {
     planId: {
@@ -33,13 +53,21 @@ export default {
   data() {
     return {
       isLoading: false,
-      error: null
+      error: null,
+      showCreate: false
     }
   },
   computed: {
     transactions() {
       const transactions = this.$store.getters['transactions/transactions']
-      return transactions
+      return transactions.sort(function(a, b) {
+        let keyA = new Date(a.created_at),
+          keyB = new Date(b.created_at)
+        // Compare the 2 dates
+        if (keyA < keyB) return 1
+        if (keyA > keyB) return -1
+        return 0
+      })
     }
   },
   methods: {
@@ -56,6 +84,9 @@ export default {
     },
     handleError() {
       this.error = null
+    },
+    toggleShowCreate() {
+      this.showCreate = !this.showCreate
     }
   },
   created() {

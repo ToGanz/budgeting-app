@@ -1,43 +1,60 @@
 <template>
-  <form @submit.prevent="submitForm">
-    <div class="form-control" :class="{ invalid: !description.isValid }">
-      <label for="description">Description</label>
-      <input
-        type="text"
-        id="description"
-        v-model.trim="description.val"
-        @blur="clearValidity('description')"
-      />
-      <p v-if="!description.isValid">Description must not be empty.</p>
-    </div>
-    <div class="form-control" :class="{ invalid: !amount.isValid }">
-      <label for="amount">Amount</label>
-      <input
-        type="number"
-        step=".01"
-        id="amount"
-        v-model.number="amount.val"
-        @blur="clearValidity('amount')"
-      />
-      <p v-if="!amount.isValid">Amount invalid.</p>
-    </div>
-    <div class="form-control" :class="{ invalid: !categoryId.isValid }">
-      <label for="category">Category</label>
-      <select v-model="categoryId.val" id="category" @blur="clearValidity('categoryId')">
-        <option
-          v-for="cat in categories"
-          :key="cat.id"
-          :value="cat.id"
+  <form @submit.prevent="submitForm" class="mt-8 space-y-6">
+    <div class="rounded-md shadow-sm -space-y-px">
+      <div :class="{ invalid: !description.isValid }">
+        <label for="description" class="sr-only">Description</label>
+        <input
+          type="text"
+          id="description"
+          placeholder="Description"
+          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          v-model.trim="description.val"
+          @blur="clearValidity('description')"
+        />
+        <p v-if="!description.isValid">Description must not be empty.</p>
+      </div>
+      <div :class="{ invalid: !amount.isValid }">
+        <label for="amount" class="sr-only">Amount</label>
+        <input
+          type="number"
+          step=".01"
+          id="amount"
+          placeholder="Amount"
+          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          v-model.number="amount.val"
+          @blur="clearValidity('amount')"
+        />
+        <p v-if="!amount.isValid">Amount invalid.</p>
+      </div>
+      <div :class="{ invalid: !categoryId.isValid }">
+        <label for="category" class="sr-only">Category</label>
+        <select
+          v-model="categoryId.val"
+          id="category"
+          placeholder="Category"
+          class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+          @blur="clearValidity('categoryId')"
         >
-          {{ cat.name }}
-        </option>
-      </select>
-      <p v-if="!categoryId.isValid">Category invalid.</p>
+          <option v-for="cat in categories" :key="cat.id" :value="cat.id">
+            {{ cat.name }}
+          </option>
+        </select>
+        <p v-if="categoryId.isValid">Category</p>
+        <p v-else>Category invalid.</p>
+      </div>
     </div>
+
     <p v-if="!formIsValid">
       Please fix the above errors and submit again.
     </p>
-    <base-button>{{ submitButtonCaption }}</base-button>
+    <div>
+      <button
+        type="submit"
+        class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      >
+        {{ submitButtonCaption }}
+      </button>
+    </div>
   </form>
 </template>
 
@@ -111,7 +128,6 @@ export default {
         this.categoryId.isValid = false
         this.formIsValid = false
       }
-      
     },
     submitForm() {
       this.validateForm()

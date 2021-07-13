@@ -48,7 +48,6 @@ export default {
               message: ''
             })
           }, 3000)
-          this.close()
         } catch (err) {
           this.error = err.response.data.errors
         }
