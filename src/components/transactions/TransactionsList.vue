@@ -113,7 +113,7 @@ export default {
     },
     getCategoryById(categoryId) {
       return this.categories.filter(
-        (category) => category.id !== categoryId
+        (category) => category.id === categoryId
       )[0].name
     }
   }

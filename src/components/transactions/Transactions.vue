@@ -27,6 +27,7 @@
     :planId="planId"
   ></create-transaction>
 
+  <transaction-filter @change-filter="setFilters"></transaction-filter>
   <div v-if="isLoading">
     <base-spinner></base-spinner>
   </div>
@@ -39,12 +40,15 @@
 <script>
 import TransactionsList from '@/components/transactions/TransactionsList.vue'
 import CreateTransaction from '@/components/transactions/CreateTransaction.vue'
+import TransactionFilter from '@/components/transactions/TransactionFilter.vue'
+
 import { PlusIcon, MinusIcon } from '@heroicons/vue/solid'
 
 export default {
   components: {
     TransactionsList,
     CreateTransaction,
+    TransactionFilter,
     PlusIcon,
     MinusIcon
   },
@@ -57,13 +61,14 @@ export default {
     return {
       isLoading: false,
       error: null,
-      showCreate: false
+      showCreate: false,
+      activeFilters: null
     }
   },
   computed: {
     transactions() {
       const transactions = this.$store.getters['transactions/transactions']
-      return transactions.sort(function(a, b) {
+      const sortedTransactions = transactions.sort(function(a, b) {
         let keyA = new Date(a.created_at),
           keyB = new Date(b.created_at)
         // Compare the 2 dates
@@ -71,6 +76,33 @@ export default {
         if (keyA > keyB) return -1
         return 0
       })
+
+      if (!this.activeFilters) {
+        return sortedTransactions
+      }
+      console.log(this.activeFilters)
+      return sortedTransactions.filter( transaction => {
+        console.log(transaction.categoryId)
+        if (this.activeFilters[transaction.categoryId]) {
+          return true;
+        }
+        return false
+      })
+    },
+    filteredCoaches() {
+      const coaches = this.$store.getters['coaches/coaches'];
+      return coaches.filter( coach => {
+        if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
+          return true;
+        }
+        if (this.activeFilters.backend && coach.areas.includes('backend')) {
+          return true;
+        } 
+        if (this.activeFilters.career && coach.areas.includes('career')) {
+          return true;
+        } 
+        return false;
+      });
     },
     total() {
       //sum = array.reduce((pv, cv) => pv + cv, 0);
@@ -88,6 +120,9 @@ export default {
         this.error = error.message || 'Something went wrong!'
       }
       this.isLoading = false
+    },
+    setFilters(updatedFilters) {
+      this.activeFilters = updatedFilters;
     },
     handleError() {
       this.error = null

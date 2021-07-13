@@ -30,7 +30,10 @@
     ></transactions>
     <div v-else>
       To add a transaction
-      <router-link :to="{ name: 'Categories' }">
+      <router-link
+        :to="{ name: 'Categories' }"
+        class="font-medium text-indigo-600 hover:text-indigo-500"
+      >
         create a Category first.
       </router-link>
     </div>
@@ -69,24 +72,40 @@ export default {
     }
   },
   methods: {
-    async getPlan() {
+    async getPlanAndCategories() {
       this.isLoading = true
       try {
         await this.$store.dispatch('plans/getPlan', { id: this.id })
       } catch (error) {
         this.error = error.message || 'Something went wrong!'
       }
-      this.isLoading = false
-    },
-    async getCategories() {
-      this.isLoading = true
+
       try {
         await this.$store.dispatch('categories/getCategories')
       } catch (error) {
         this.error = error.message || 'Something went wrong!'
       }
+
       this.isLoading = false
     },
+    // async getPlan() {
+    //   this.isLoading = true
+    //   try {
+    //     await this.$store.dispatch('plans/getPlan', { id: this.id })
+    //   } catch (error) {
+    //     this.error = error.message || 'Something went wrong!'
+    //   }
+    //   this.isLoading = false
+    // },
+    // async getCategories() {
+    //   this.isLoading = true
+    //   try {
+    //     await this.$store.dispatch('categories/getCategories')
+    //   } catch (error) {
+    //     this.error = error.message || 'Something went wrong!'
+    //   }
+    //   this.isLoading = false
+    // },
     handleError() {
       this.error = null
     },
@@ -95,8 +114,7 @@ export default {
     }
   },
   created() {
-    this.getPlan()
-    this.getCategories()
+    this.getPlanAndCategories()
   }
 }
 </script>
