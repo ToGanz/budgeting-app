@@ -7,8 +7,8 @@
     <p>{{ error }}</p>
   </base-dialog>
 
-  <div class="flex place-content-around">
-    <h2 class="mt-6 cursor-pointer text-center text-xl font-extrabold text-gray-700">
+  <div class="flex place-content-center gap-x-8">
+    <h2 class="mt-6 text-center text-xl font-extrabold text-gray-700">
       Transactions
     </h2>
     <button
@@ -18,6 +18,9 @@
       <MinusIcon v-if="showCreate" class="h-10 w-8 text-white-700" />
       <PlusIcon v-else class="h-10 w-8 text-white-700" />
     </button>
+    <div class="mt-6 text-center text-xl font-extrabold text-gray-700">
+      Total: {{ total }}
+    </div>
   </div>
   <create-transaction
     v-if="showCreate"
@@ -68,6 +71,10 @@ export default {
         if (keyA > keyB) return -1
         return 0
       })
+    },
+    total() {
+      //sum = array.reduce((pv, cv) => pv + cv, 0);
+      return this.transactions.reduce((sum, transaction) => sum + parseFloat(transaction.amount), 0).toFixed(2)
     }
   },
   methods: {
