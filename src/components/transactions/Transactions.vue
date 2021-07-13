@@ -7,8 +7,8 @@
     <p>{{ error }}</p>
   </base-dialog>
 
-  <div class="flex place-content-center gap-x-8">
-    <h2 class="mt-6 text-center text-xl font-extrabold text-gray-700">
+  <div class="flex place-content-center gap-x-4">
+    <h2 class="pl-2 mt-6 text-center text-xl font-extrabold text-gray-700">
       Transactions
     </h2>
     <button
@@ -18,7 +18,7 @@
       <MinusIcon v-if="showCreate" class="h-10 w-8 text-white-700" />
       <PlusIcon v-else class="h-10 w-8 text-white-700" />
     </button>
-    <div class="mt-6 text-center text-xl font-extrabold text-gray-700">
+    <div class="pr-1 mt-6 text-center text-xl font-extrabold text-gray-700">
       Total: {{ total }}
     </div>
   </div>
